@@ -1,14 +1,19 @@
-# Виртуальное окружение
-.venv/
-venv/
-
-# Секреты и токены
+# Скрытые конфигурации (ТОКЕНЫ!)
 .env
 
 # База данных
-*.sqlite
-*.db
+trading_bot.db
+trading_bot.db-journal
 
-# Кэш IDE и Python
-.idea/
+# Логи и отладка
+bot.log
+steam_debug.html
+
+# Виртуальное окружение Python
+.venv/
+venv/
+env/
+
+# Кэш Python
 __pycache__/
+*.pyc
