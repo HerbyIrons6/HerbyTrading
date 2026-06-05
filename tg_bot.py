@@ -6,6 +6,7 @@ from aiogram.filters import CommandStart, Command, CommandObject
 from aiogram.utils.keyboard import InlineKeyboardBuilder, ReplyKeyboardBuilder
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
+from cachetools import TTLCache
 
 # Убрали импорт DB_NAME и aiosqlite, теперь всё идет через db_manager
 from db_manager import (
@@ -23,7 +24,7 @@ router = Router()
 
 # Кэш поиска для защиты от гонки данных (Race Condition)
 # Формат: {user_id: ["AK-47 | Redline (Field-Tested)", "AWP | Asiimov (Field-Tested)", ...]}
-SEARCH_CACHE = {}
+SEARCH_CACHE = TTLCache(maxsize=1000, ttl=900)
 
 
 class AddSkinState(StatesGroup):

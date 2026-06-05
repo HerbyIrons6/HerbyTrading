@@ -1,6 +1,7 @@
 import asyncio
 import os
 import logging
+from logging.handlers import RotatingFileHandler
 from datetime import datetime, timedelta, timezone
 
 from aiogram import Bot, Dispatcher
@@ -21,7 +22,8 @@ logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s",
     handlers=[
-        logging.FileHandler("bot.log", encoding="utf-8"),
+        # Файл макс 5 МБ, храним 2 старых архива
+        RotatingFileHandler("bot.log", maxBytes=5*1024*1024, backupCount=2, encoding="utf-8"),
         logging.StreamHandler()
     ]
 )
